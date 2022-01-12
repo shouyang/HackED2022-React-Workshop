@@ -3,80 +3,20 @@ import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  Card,
   Container,
   Col,
-  Form,
-  Stack,
-  Button,
   Row,
-  Navbar,
-  Nav,
 } from "react-bootstrap";
+
+import { Header } from "./components/Header";
+import { TaskCard } from "./components/TaskCard";
+import { AddTaskForm } from "./components/AddTaskForm";
 
 // A simple class to track our tasks.
 class Task {
   constructor(text) {
     this.text = text;
   }
-}
-
-function Header() {
-  return (
-    <Navbar>
-      <Navbar.Brand> React-To-Do</Navbar.Brand>
-      <Nav className="me-auto"></Nav>
-    </Navbar>
-  );
-}
-
-function AddTaskForm(props) {
-  // State
-  const [userText, setUserText] = useState("");
-
-  // Event Handlers
-  function handleTextInput(event) {
-    setUserText(event.target.value);
-  }
-
-  function handleCreateNewTask(event) {
-    props.addTask(userText);
-    setUserText("");
-  }
-
-  // Render React & HTML Components
-  return (
-    <Stack direction="horizontal" gap={3}>
-      <Form>
-        <Form.Control
-          type="text"
-          placeholder="Enter a new task!"
-          value={userText}
-          onChange={handleTextInput}
-        />
-      </Form>
-      <Button onClick={handleCreateNewTask}>Add Task</Button>
-    </Stack>
-  );
-}
-
-
-function TaskCard(props) {
-  const task = props.task;
-  const deleteTask = props.deleteTask;
-
-  function handleDone() {
-    deleteTask(task);
-  }
-
-  return (
-    <Card key={task.text} style={{ width: '25rem' }}>
-      <Card.Body>
-        <Card.Text>{task.text}</Card.Text>
-        <Card.Link onClick={handleDone}>Done!</Card.Link>
-      </Card.Body>
-    </Card>
-  )
 }
 
 function TaskColumn(props) {
